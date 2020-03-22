@@ -1,0 +1,84 @@
+:root {
+    --sep-value: 25px;
+    --width-val: 650px;
+
+    margin: auto;
+    background-color: white;
+    font-family: sans-serif;
+    color: ghostwhite;
+    width: var(--width-val);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.nice-box {
+    margin-top: var(--sep-value);
+    background-color: cornflowerblue;
+    padding: 1rem;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    box-shadow: grey 0px 0px 15px;
+}
+
+header {
+    align-self: center;
+}
+
+header > h1 {
+    background-color: blue;
+    padding: 5px;
+    border-color: wheat;
+    border-radius: 3px;
+}
+
+textarea {
+    width: 100%;
+}
+
+nav > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+  
+nav > ul > li {
+    float: left;
+}
+  
+nav > ul > li > a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  }
+
+@media only screen and (max-width: 700px) {
+    :root {
+        margin: 1px;
+        padding: 1px;
+        width: 100%;
+    }
+
+    body {
+        margin: 1px;
+        padding: 1px;
+    }
+    .nice-box {
+        margin: 0;
+        margin-top: 3px;
+        background-color: cornflowerblue;
+        padding: .3rem;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 2px;
+    }
+}
