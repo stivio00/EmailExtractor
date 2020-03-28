@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <title>Proyecto UTP</title>
+    <title>Extactor de Correos</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script>
@@ -26,13 +26,15 @@
         <form action="" id="entrada">
             <label for="table_input">Pegue el texto de la tabla de estudiantes del listado provisional:</label><br>
             <textarea id="table_input" name="table_input"></textarea> <br>
-            <input type="button" id="pegar" value="Pegar" onclick="pasteFromClipboard() ">
+            <input type="checkbox" id="solo_inclusion" >
+            <label for="solo_inclusion">Solo inlusion</label><br>
+            <input type="button" id="pegar" value="Pegar" onclick="pasteFromClipboard()" >
             <input type="button" id="procesar" value="Procesar" onclick="procesar_datos()"><span>   </span>
             <input type="button" id="limpiar_in" value="Limpiar" onclick="limpiar(1)">
             <!-- <input type="submit" value="Procesar"> -->
         </form>
-
-        <h3>Correos: </h3>
+        <hr>
+        <h3 id="correos_label">Correos: </h3>
         <form action="#" id="salida">
             <label for="table_output">Correos</label><br>
             <textarea id="table_output" name="table_output"></textarea> <br>
@@ -42,8 +44,9 @@
     </main>
 
     <footer class="nice-box">
-        <p>Gracias por usr el extractor rapido - <a href="mailto:">Stephen Krol</a> 2020</p>
+        <p>Gracias por usar el extractor rapido - <a href="mailto:">Stephen Krol</a> 2020</p>
     </footer>
 
+    <div id="snackbar">Algun mensaje</div>
 </body>
 </html>
