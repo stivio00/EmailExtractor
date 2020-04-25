@@ -1,6 +1,5 @@
 "use strict";
 
-
 function procesar_datos(){
     var input_element = document.getElementById("table_input");
     var output_element = document.getElementById("table_output");
@@ -34,6 +33,9 @@ function procesar_datos(){
     var label = document.getElementById("correos_label");
     if (count != 0) {
         label.innerHTML= `Correos procesados (${count}):`;
+        var link_element = document.querySelector("#email-link");
+        link_element.href= "mailto:" + output_element.value;
+        link_element.innerHTML= `Enviar ${count} correos` ;
         copyToClipboard();
     }  else {
         label.innerHTML = "Correos (0) : "
@@ -64,6 +66,9 @@ function limpiar(element) {
     }else{
         document.getElementById("table_output").value = "";
     }
+    var link_element = document.querySelector("#email-link");
+    link_element.href= "#";
+    link_element.innerHTML= `Sin correos` ;
     //postMessage("limpio");
 }
 
