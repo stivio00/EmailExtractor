@@ -1,5 +1,6 @@
 "use strict";
 
+
 function procesar_datos(){
     var input_element = document.getElementById("table_input");
     var output_element = document.getElementById("table_output");
