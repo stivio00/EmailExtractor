@@ -34,7 +34,9 @@ function procesar_datos(){
     if (count != 0) {
         label.innerHTML= `Correos procesados (${count}):`;
         var link_element = document.querySelector("#email-link");
-        link_element.href= "mailto:" + output_element.value;
+        //var ll = `https://outlook.office.com/owa/?rru=compose&to=${to}&subject=${subject}&body=${body}`//&cc=
+        //link_element.href= "mailto:" + output_element.value;
+        link_element.href= `https://outlook.office.com/owa/?rru=compose&to=${output_element.value}&subject=Asunto&body=Buenos dias!`;
         link_element.innerHTML= `Enviar ${count} correos` ;
         copyToClipboard();
     }  else {
