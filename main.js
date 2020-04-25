@@ -36,8 +36,13 @@ function procesar_datos(){
         var link_element = document.querySelector("#email-link");
         //var ll = `https://outlook.office.com/owa/?rru=compose&to=${to}&subject=${subject}&body=${body}`//&cc=
         //link_element.href= "mailto:" + output_element.value;
-        link_element.href= `https://outlook.office.com/owa/?rru=compose&to=${output_element.value}&subject=Asunto&body=Buenos dias!`;
+        var link_str = `https://outlook.office.com/owa/?rru=compose&to=${output_element.value}&subject=Asunto&body=Buenos dias!`;
+        //link_element.href = "#";
         link_element.innerHTML= `Enviar ${count} correos` ;
+        link_element.onclick = function() { 
+            var MyWindow = window.open(link_str,'Enviar correo','width=800,height=800');
+            return false;
+        };
         copyToClipboard();
     }  else {
         label.innerHTML = "Correos (0) : "
