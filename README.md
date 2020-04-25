@@ -1,2 +1,2 @@
 # EmailExtractor
-small tool for email stractor from html tables
+small tool for extract emails from html tables
