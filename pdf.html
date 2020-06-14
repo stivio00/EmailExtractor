@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Comparador de PDF</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        .row {
+            display: flex;
+        }
+        .column {
+            flex: 50%;
+        }
+        .frame {
+            width: 100%;
+            height: 700px;
+        }
+        #drop_zone {
+            margin: auto;
+            border: 5px dotted blue;
+            background-color: lightblue;
+            width:  500px;
+            height: 100px;
+        }
+        #pdf1 {
+            display: none;
+        }
+        #pdf2 {
+            display: none;
+        }
+    </style>
+    <script> 
+ //globals
+ var blobs = [];  
+
+
+function dropHandler( ev) {
+  ev.preventDefault();
+  document.querySelector("#drop_zone").style.display = "none";
+  var combo1 = document.querySelector("#pdf1");
+  var combo2 = document.querySelector("#pdf2");
+  combo1.style.display = "block";
+  combo2.style.display = "block";
+
+  if (ev.dataTransfer.items) {
+    // Use DataTransferItemList interface to access the file(s)
+    for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+      // If dropped items aren't files, reject them
+      if (ev.dataTransfer.items[i].kind === 'file') {
+        var file = ev.dataTransfer.items[i].getAsFile();
+        console.log('... file[' + i + '].name = ' + file.name);
+        // create new option element
+        var opt1 = document.createElement('option');
+        var opt2 = document.createElement('option');
+        // create text node to add to option element (opt)
+        opt1.appendChild( document.createTextNode(file.name) );
+        opt2.appendChild( document.createTextNode(file.name) );
+        // set value property of opt
+        opt1.value = file.name;
+        opt2.value = file.name; 
+        // add opt to end of select box (sel)
+        combo1.appendChild(opt1);
+        combo2.appendChild(opt2);
+        blobs.push(file)
+      }
+    }
+  } else {
+    // Use DataTransfer interface to access the file(s)
+    for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+      console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
+    }
+  }
+}
+
+function dragOverHandler(ev) {
+  // Prevent default behavior (Prevent file from being opened)
+  ev.preventDefault();
+}
+
+function select(e,ev){
+    console.log(ev);
+    console.log(e);
+    var i = 0;
+    for(; i<ev.srcElement.length; i++){
+        if(ev.srcElement[i].selected) {
+            break;
+        }
+    }
+    if(e.id==="pdf1"){
+        document.querySelector("#frame1").src =  URL.createObjectURL(blobs[i]);
+    }else if(e.id==="pdf2"){
+        document.querySelector("#frame2").src =  URL.createObjectURL(blobs[i]);
+    }
+
+}
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Comparar PDF</h1>
+        <div id="drop_zone" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">Drop File here</div>
+    </header>
+
+    <main class="row">
+        <div class="column" >
+            <select id="pdf1" onchange="select(this, event)"><option value=""</option></select>
+            <iframe class="frame" id="frame1">PDF1</iframe>
+        </div>
+        <div class="column" >
+            <select id="pdf2" onchange="select(this, event)"><option value=""></option></select>
+            <iframe class="frame" id="frame2">PDF2</iframe>
+        </div>
+    </main>
+
+    <footer>
+        <p>Gracias por usar el comparador- <a href="mailto:">Stephen Krol</a> 2020</p>
+    </footer>
+</body>
+</html>
